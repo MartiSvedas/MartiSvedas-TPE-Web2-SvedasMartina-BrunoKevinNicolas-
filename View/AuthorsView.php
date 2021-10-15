@@ -10,20 +10,18 @@ class AuthorsView{
     }  
      
     function viewAuthors($libros,$autores, $user){
-        $smarty = new Smarty();
-        $smarty->assign('titulo','Autores');
-        $smarty->assign('autores', $autores);
-        $smarty->assign('libros', $libros);
-        $smarty->assign('user', $user);
-        $smarty->display('templates/authorsDetail.tpl');
+        $this->smarty->assign('titulo','Autores');
+        $this->smarty->assign('autores', $autores);
+        $this->smarty->assign('libros', $libros);
+        $this->smarty->assign('user', $user);
+        $this->smarty->display('templates/authorsDetail.tpl');
     }
 
     function showFilter($libros,$autor){
-        $smarty = new Smarty();
-        $smarty->assign('titulo','Libros de');
-        $smarty->assign('autor', $autor);
-        $smarty->assign('libros', $libros);
-        $smarty->display('templates/filterBooks.tpl');
+        $this->smarty->assign('titulo','Libros de');
+        $this->smarty->assign('autor', $autor);
+        $this->smarty->assign('libros', $libros);
+        $this->smarty->display('templates/filterBooks.tpl');
     }
 
     function ShowCategoriaLocation(){
@@ -32,10 +30,9 @@ class AuthorsView{
     }
 
     function showEditAutor($autor){
-        $smarty = new Smarty();
-        $smarty->assign('titulo','Editar Autor');
-        $smarty->assign('autor', $autor);
-        $smarty->display('templates/editAutor.tpl');
+        $this->smarty->assign('titulo','Editar Autor');
+        $this->smarty->assign('autor', $autor);
+        $this->smarty->display('templates/editAutor.tpl');
 
     }
 }

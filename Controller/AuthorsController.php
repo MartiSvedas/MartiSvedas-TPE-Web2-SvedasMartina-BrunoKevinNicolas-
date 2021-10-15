@@ -33,12 +33,14 @@ class AuthorsController{
     }
 
     function deleteAutor($id){
+        $this->authHelper->checkLoggedIn();
         $this->model->deleteAutor($id);
         $this->view->ShowCategoriaLocation();
 
     }
 
     function createAutor(){
+        $this->authHelper->checkLoggedIn();
         $this->model->insertAutor($_POST['nombre'],$_POST['descripcion'],$_POST['genero']);
         $this->view->ShowCategoriaLocation();
     }
@@ -50,6 +52,7 @@ class AuthorsController{
     }
 
     function guardarEdit(){
+        $this->authHelper->checkLoggedIn();
         $this->model->updateAutor($_POST['nombre'],$_POST['descripcion'],$_POST['genero'],$_POST['id']);
         $this->view->ShowCategoriaLocation();
     }

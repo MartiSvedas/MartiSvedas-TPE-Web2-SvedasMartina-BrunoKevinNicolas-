@@ -6,30 +6,27 @@ class BooksView{
     private $smarty;
 
     function __construct(){
-        $smarty = new Smarty();
+        $this->smarty = new Smarty();
     }
 
     function showHome($libros,$autores,$user){
-        $smarty = new Smarty();
-        $smarty->assign('titulo','Libreria');
-        $smarty->assign('libros',$libros);
-        $smarty->assign('autores',$autores);
-        $smarty->assign('user', $user);
-        $smarty->display('templates/booksTable.tpl');
+        $this->smarty->assign('titulo','Libreria');
+        $this->smarty->assign('libros',$libros);
+        $this->smarty->assign('autores',$autores);
+        $this->smarty->assign('user', $user);
+        $this->smarty->display('templates/booksTable.tpl');
     }
     function showDetail($libro,$autores){
-        $smarty = new Smarty();
-        $smarty -> assign('titulo','Detalles del libro');
-        $smarty -> assign("libro",$libro);
-        $smarty->assign('autores',$autores);
-        $smarty->display('templates/bookDetail.tpl');
+        $this->smarty->assign('titulo','Detalles del libro');
+        $this->smarty->assign("libro",$libro);
+        $this->smarty->assign('autores',$autores);
+        $this->smarty->display('templates/bookDetail.tpl');
     }
     function showEditBook($libro,$autores){
-        $smarty = new Smarty();
-        $smarty -> assign('titulo','Editar');
-        $smarty -> assign("libro",$libro);
-        $smarty->assign('autores',$autores);
-        $smarty -> display('templates/editBook.tpl');
+        $this->smarty -> assign('titulo','Editar');
+        $this->smarty -> assign("libro",$libro);
+        $this->smarty->assign('autores',$autores);
+        $this->smarty -> display('templates/editBook.tpl');
     }
    
     function ShowHomeLocation(){

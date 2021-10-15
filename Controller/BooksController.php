@@ -35,11 +35,13 @@ class BooksController{
     }
 
     function createBook(){
+        $this->authHelper->checkLoggedIn();
         $this->model->insertBook($_POST['nombre'],$_POST['sinopsis'],$_POST['autor']);
         $this->view->ShowHomeLocation();
     }
 
     function deleteBook($id){
+        $this->authHelper->checkLoggedIn();
         $this->model->deleteBook($id);
         $this->view->ShowHomeLocation();
     }
@@ -53,6 +55,7 @@ class BooksController{
 }
 
     function guardarEdit(){
+        $this->authHelper->checkLoggedIn();
         $this->model->updateBook($_POST['nombre'],$_POST['sinopsis'],$_POST['autor'],$_POST['id']);
         $this->view->ShowHomeLocation();
          }

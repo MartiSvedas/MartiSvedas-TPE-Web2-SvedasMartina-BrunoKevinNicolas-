@@ -10,16 +10,14 @@ class LoginView{
     }  
     
     function showLogin($message = ""){
-        $smarty = new Smarty();
-        $smarty->assign('titulo','Iniciar Sesion');
-        $smarty->assign('message',$message);
-        $smarty->display('templates/login.tpl');
+        $this->smarty->assign('titulo','Iniciar Sesion');
+        $this->smarty->assign('message',$message);
+        $this->smarty->display('templates/login.tpl');
     }
 
     function ShowRegister(){
-        $smarty = new Smarty();
-        $smarty->assign('titulo','Registrate');
-        $smarty->display('templates/register.tpl');
+        $this->smarty->assign('titulo','Registrate');
+        $this->smarty->display('templates/register.tpl');
     }
 
     function ShowHomeLocation(){
