@@ -98,10 +98,17 @@ class BooksController{
         $sinopsis=$_POST['sinopsis'];
         $autor=$_POST['autor'];
         $id_book= $_POST['id'];
+        $imagen= $_FILES['input_image']['tmp_name'];
         $this->authHelper->checkAdminLogged();
         if(!empty($nombre) && !empty($sinopsis) && !empty($autor)){
-            $this->model->updateBook($nombre,$sinopsis,$autor,$id_book);
-            $this->view->ShowHomeLocation();}
+            if($_FILES['input_image']['type'] == "image/jpg" || $_FILES['input_image']['type'] == "image/jpeg" || $_FILES['input_image']['type'] == "image/png" ) { 
+                $this->model->updateBook($nombre,$sinopsis,$autor,$id_book,$imagen);
+                $this->view->ShowHomeLocation();
+            }else{
+                $this->model->updateBook($nombre,$sinopsis,$autor,$id_book,);
+                $this->view->ShowHomeLocation();
+            }
+        }
         else{
             $this->view->ShowHomeLocation();
         }

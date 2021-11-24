@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost
--- Tiempo de generación: 24-11-2021 a las 05:03:39
+-- Tiempo de generación: 25-11-2021 a las 00:13:24
 -- Versión del servidor: 10.4.19-MariaDB
 -- Versión de PHP: 8.0.6
 
@@ -48,32 +48,6 @@ INSERT INTO `Autores` (`id`, `nombre`, `descripcion`, `genero`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `comentarios`
---
-
-CREATE TABLE `comentarios` (
-  `id` int(11) NOT NULL,
-  `comentario` text NOT NULL,
-  `puntaje` int(5) NOT NULL,
-  `id_libro` int(11) NOT NULL,
-  `id_user` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Volcado de datos para la tabla `comentarios`
---
-
-INSERT INTO `comentarios` (`id`, `comentario`, `puntaje`, `id_libro`, `id_user`) VALUES
-(43, 'libro hermoso', 4, 18, 26),
-(47, 'libro largo pero lindo', 3, 43, 20),
-(48, 'comentario', 2, 11, 20),
-(49, 'comentario', 2, 5, 30),
-(52, 'comentario', 3, 15, 20),
-(53, 'libro para leer si sos scout', 5, 51, 20);
-
--- --------------------------------------------------------
-
---
 -- Estructura de tabla para la tabla `Libros`
 --
 
@@ -92,9 +66,9 @@ CREATE TABLE `Libros` (
 INSERT INTO `Libros` (`id`, `nombre`, `sinopsis`, `id_autor`, `imagen`) VALUES
 (5, 'El resplandor', 'Jack Torrance se convierte en cuidador de invierno en el Hotel Overlook, en Colorado, con la esperanza de vencer su bloqueo con la escritura. Se instala allí junto con su esposa, Wendy, y su hijo, Danny, que está plagado de premoniciones psíquicas. Mientras la escritura de Jack no fluye y las visiones de Danny se vuelven más preocupantes, Jack descubre oscuros secretos del hotel y comienza a convertirse en un maníaco homicida, empeñado en aterrorizar a su familia.', 1, ''),
 (11, 'IT', 'Varios niños de una pequeña ciudad del estado de Maine se alían para combatir a una entidad diabólica que adopta la forma de un payaso y desde hace mucho tiempo emerge cada 27 años para saciarse de sangre infantil.', 1, ''),
-(13, 'El cuervo', 'El texto narra la misteriosa visita de un cuervo parlante a la casa de un amante afligido, y del lento descenso hacia la locura de este último. El amante, que a menudo se ha identificado como un estudiante,​​ llora la pérdida de su amada, Leonora.', 2, ''),
-(15, 'Carrie', 'Carrie White, una tímida adolescente críada por una fanática religosa es humillada constantemente por su compañeros de instituto. Sin embargo, Carrie no es una chica cualquiera, la joven posee poderes psíquicos que se manifiestan cuando se siente dominada por la ira. El día del baile de graduación la situación llega a hacérsele insoportable.', 1, ''),
-(17, 'El imperio final', ' Durante mil años han caído las cenizas y nada florece. Durante mil años los skaa han sido esclavizados y viven sumidos en un miedo inevitable. Durante mil años el Lord Legislador reina con un poder absoluto gracias al terror, a sus poderes e inmortalidad.', 6, ''),
+(13, 'El cuervo', 'El texto narra la misteriosa visita de un cuervo parlante a la casa de un amante afligido, y del lento descenso hacia la locura de este último. El amante, que a menudo se ha identificado como un estudiante,​​ llora la pérdida de su amada, Leonora.', 2, 'img/books/619e993d0e71a.jpg'),
+(15, 'Carrie', 'Carrie White, una tímida adolescente críada por una fanática religosa es humillada constantemente por su compañeros de instituto. Sin embargo, Carrie no es una chica cualquiera, la joven posee poderes psíquicos que se manifiestan cuando se siente dominada por la ira. El día del baile de graduación la situación llega a hacérsele insoportable.', 1, 'img/books/619e9803506a3.jpg'),
+(17, 'El imperio final', ' Durante mil años han caído las cenizas y nada florece. Durante mil años los skaa han sido esclavizados y viven sumidos en un miedo inevitable. Durante mil años el Lord Legislador reina con un poder absoluto gracias al terror, a sus poderes e inmortalidad.', 6, 'img/books/619e8fa2ecc27.jpg'),
 (18, 'Sangre y Hueso', 'Hace trece años, una catastrófica pandemia acabó con millones de vidas. Los supervivientes vagan por un mundo devastado, peligroso. Algunos han descubierto que tienen habilidades especiales y esto les ha convertido en presas del resto. Solo ella puede salvarlos.', 7, ''),
 (19, 'The Stand', 'En un mundo postapocalíptico, un virus letal ha sido diseñado como un arma biológica por el gobierno y, accidentalmente, es esparcido primero por América y, después, por todo el mundo, causando el fallecimiento de más del 99% de la población.', 1, ''),
 (20, 'Juramentada', ' En Juramentada, el tercer volumen del best-seller en The New York Times El archivo de las tormentas, la humanidad se enfrenta a una nueva Desolación con el regreso de los Portadores del Vacío, un enemigo cuya sed de venganza es tan grande como su número.', 6, ''),
@@ -125,10 +99,10 @@ CREATE TABLE `user` (
 INSERT INTO `user` (`id`, `usuario`, `password`, `admin`) VALUES
 (20, 'admin', '$2y$10$IVLBYljD7Bq2/XmzDQWHZenHJtazdRwSMegirn.IBkyrJMtONJtka', 1),
 (26, 'pan', '$2y$10$7BFylA1gaVnj4VefJe/CH.Ht/yQoPDNQWTi24VkS2KIbpaW3aLJpC', NULL),
-(27, 'pepito', '$2y$10$zQMtlaofQEX6QpgFms9ZsO3KPqCV1mtmZmErV7/NXRKfHYcl6SNuC', NULL),
-(30, 'asdf', '$2y$10$yFaP6xPMpuZHPAyEsI3Sg.4SgYjecendGkG3CyxHQ.rna3xrGEkOC', NULL),
+(27, 'pepito', '$2y$10$zQMtlaofQEX6QpgFms9ZsO3KPqCV1mtmZmErV7/NXRKfHYcl6SNuC', 1),
 (31, 'holi', '$2y$10$aKVLUl53O4l89/E3t.cT2.HUruVlzIdIh.UrDD.Ldh0UA4hIJIJ.m', NULL),
-(32, 'pedrito', '$2y$10$DyUMjjpZgdxtySBrmxS17eJFIzpC2EzELk8AGOUgqqohGf61DXroW', NULL);
+(32, 'pedrito', '$2y$10$DyUMjjpZgdxtySBrmxS17eJFIzpC2EzELk8AGOUgqqohGf61DXroW', 1),
+(33, 'adios', '$2y$10$f28xjjtpZrPiNDu5PXyzI.lNVE3JCSrSKJMN47bHBj2mLQGnHbTaq', NULL);
 
 --
 -- Índices para tablas volcadas
@@ -139,14 +113,6 @@ INSERT INTO `user` (`id`, `usuario`, `password`, `admin`) VALUES
 --
 ALTER TABLE `Autores`
   ADD PRIMARY KEY (`id`);
-
---
--- Indices de la tabla `comentarios`
---
-ALTER TABLE `comentarios`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `id_libro` (`id_libro`),
-  ADD KEY `id_user` (`id_user`);
 
 --
 -- Indices de la tabla `Libros`
@@ -169,13 +135,7 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT de la tabla `Autores`
 --
 ALTER TABLE `Autores`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
-
---
--- AUTO_INCREMENT de la tabla `comentarios`
---
-ALTER TABLE `comentarios`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=54;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT de la tabla `Libros`
@@ -187,18 +147,11 @@ ALTER TABLE `Libros`
 -- AUTO_INCREMENT de la tabla `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
 
 --
 -- Restricciones para tablas volcadas
 --
-
---
--- Filtros para la tabla `comentarios`
---
-ALTER TABLE `comentarios`
-  ADD CONSTRAINT `comentarios_ibfk_1` FOREIGN KEY (`id_libro`) REFERENCES `Libros` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `comentarios_ibfk_2` FOREIGN KEY (`id_user`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `Libros`

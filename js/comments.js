@@ -57,7 +57,7 @@ if(admin == true){
             console.log(error)}
     }
     else{
-        app.subtitulo="Debe ser administrador para borrar un comentrio"
+        app.subtitulo="Debe ser administrador para borrar un comentario"
     }
 }
 

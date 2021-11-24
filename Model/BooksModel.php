@@ -37,8 +37,14 @@ class BooksModel{
 
     }
 
-    function updateBook($nombre,$sinopsis,$autor,$id){
-        $query = $this->db->prepare("UPDATE Libros SET nombre='$nombre',sinopsis='$sinopsis', id_autor='$autor' WHERE id=?");
+    function updateBook($nombre,$sinopsis,$autor,$id,$imagen=null){
+        $pathImg = null;
+        if ($imagen){
+            $target = 'img/books/' . uniqid() . '.jpg';
+            move_uploaded_file($imagen, $target);
+            $pathImg =  $target;
+        }
+        $query = $this->db->prepare("UPDATE Libros SET nombre='$nombre',sinopsis='$sinopsis', id_autor='$autor', imagen='$pathImg' WHERE id=?");
         $query->execute(array($id));
     }
 
@@ -47,7 +53,6 @@ class BooksModel{
         if ($imagen){
             $target = 'img/books/' . uniqid() . '.jpg';
             $pathImg =  $target;
-            var_dump($target);
         }
         $imagen= $pathImg;
         $query = $this->db->prepare("UPDATE Libros SET imagen = '$imagen' WHERE id=?");

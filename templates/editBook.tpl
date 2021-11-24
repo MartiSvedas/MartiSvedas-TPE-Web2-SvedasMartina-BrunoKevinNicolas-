@@ -2,7 +2,7 @@
 {include file="header.tpl"}
 <h1>{$titulo}</h1>
 <div class="container">
-    <form action=updateBook method="POST" >
+    <form action=updateBook method="POST" enctype="multipart/form-data">
     <div class="input-group mb-3">
         <span class="input-group-text" id="basic-addon1">Nombre del libro</span>
         <input type="text" name="nombre" placeholder="{$libro->nombre}">
@@ -18,6 +18,9 @@
             <option value="{$autor->id}" >{$autor->nombre}</option>
     {/foreach}
         </select>
+    </div>
+      <div class="input-group mb-3">
+        <input type="file" name="input_image" id="imageToUpload">
     </div>
         <button class="btn btn-dark" type="submit" value="{$libro->id}" name ="id" >Editar</button>
     </form>
