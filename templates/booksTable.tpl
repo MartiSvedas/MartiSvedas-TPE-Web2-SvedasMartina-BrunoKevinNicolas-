@@ -1,6 +1,10 @@
 
   {include file="header.tpl"}
    <div class="container">
+    {$fecha}
+   {if $admin eq true}
+        <button type="button" class="btn btn-default"><a class="text-decoration-none" href="users">Usuarios</a></button>
+    {/if}
    {if $user eq true}
         <button type="button" class="btn btn-default"><a class="text-decoration-none" href="logout">Cerrar sesion</a></button>
     {/if}
@@ -12,7 +16,7 @@
                     <th scope="col">Nombre del libro</th>      
                     <th scope="col">Autor</th>
                     <th scope="col">Detalles</th> 
-                    {if $user eq true}
+                    {if $admin eq true}
                     <th scope="col">Eliminar</th>      
                     <th scope="col">Editar</th> 
                     {/if}     
@@ -37,7 +41,7 @@
                     <button type="button" class=" btn btn-outline-primary"><a class="text-decoration-none" href="showBook/{$libro->id}">Descripcion</a></button>
                     </td>
                     <td>
-                    {if $user eq true}
+                    {if $admin eq true}
                     <button type="button" class=" btn btn-outline-danger"><a class="text-decoration-none" href="deleteBook/{$libro->id}">Borrar</a></button>
                     </td>
                     <td>
@@ -50,7 +54,7 @@
             </tbody>
         </table>
     </div>
-{if $user eq true}
+{if $admin eq true}
 {include file="insertBook.tpl"}
 {/if}
 {include file="footer.tpl"}

@@ -1,6 +1,6 @@
 <div class="container">
 <h2>Agregar Libro</h2>
-<form action="createBook" method="post">
+<form action="createBook" method="post" enctype="multipart/form-data">
 <div class="col-md-6">
     <div class="input-group mb-3">
         <span class="input-group-text" id="basic-addon1">Nombre del libro</span>
@@ -17,6 +17,9 @@
     <div class="form-floating">  
         <textarea class="form-control" placeholder="Sinopsis" name="sinopsis" id="floatingTextarea2" style="height: 100px"></textarea>
         <label for="floatingTextarea2">Breve sinopsis del libro</label>
+    </div>
+    <div class="input-group mb-3">
+        <input type="file" name="input_image" id="imageToUpload">
     </div>
     <input type="submit" class="btn btn-primary" value="Agregar libro">
 </div>

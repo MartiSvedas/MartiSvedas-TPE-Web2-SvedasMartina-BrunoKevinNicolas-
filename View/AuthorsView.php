@@ -1,5 +1,5 @@
 <?php
-require_once './libs/smarty-3.1.39/libs/Smarty.class.php';
+require_once './libs/smarty-3.1.39/smarty/libs/Smarty.class.php';
  
 class AuthorsView{
 
@@ -9,11 +9,12 @@ class AuthorsView{
         $this->smarty = new Smarty();
     }  
      
-    function viewAuthors($libros,$autores, $user){
+    function viewAuthors($libros,$autores, $user,$admin){
         $this->smarty->assign('titulo','Autores');
         $this->smarty->assign('autores', $autores);
         $this->smarty->assign('libros', $libros);
         $this->smarty->assign('user', $user);
+        $this->smarty->assign('admin',$admin);
         $this->smarty->display('templates/authorsDetail.tpl');
     }
 
@@ -25,7 +26,7 @@ class AuthorsView{
     }
 
     function ShowCategoriaLocation(){
-        header("Location: ".BASE_URL."categorias");
+        header("Location: ".BASE_URL."authors");
 
     }
 
@@ -33,6 +34,7 @@ class AuthorsView{
         $this->smarty->assign('titulo','Editar Autor');
         $this->smarty->assign('autor', $autor);
         $this->smarty->display('templates/editAutor.tpl');
+
 
     }
 }

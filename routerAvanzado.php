@@ -28,6 +28,7 @@ $r->addRoute("editAutor/:ID","GET","AuthorsController","editAutor");
 
 $r->addRoute("updateAutor","POST","AuthorsController","guardarEdit");
 $r->addRoute("updateBook","POST","BooksController","guardarEdit");
+$r->addRoute("insertImg","POST","BooksController","insertarImg");
 
 $r->addRoute("filtrarBook/:ID","GET","AuthorsController","filtrarBooks");
 

@@ -1,5 +1,5 @@
 <?php
-require_once './libs/smarty-3.1.39/libs/Smarty.class.php';
+require_once './libs/smarty-3.1.39/smarty/libs/Smarty.class.php';
  
 class LoginView{
 
@@ -21,6 +21,16 @@ class LoginView{
     }
 
     function ShowHomeLocation(){
-        header("Location: ".BASE_URL."home");
+        header("Location: ".BASE_URL."books");
+    }
+
+    function viewUsers($users){
+        $this->smarty->assign('titulo','Usuarios Registrados');
+        $this->smarty->assign('users',$users);
+        $this->smarty->display('templates/adminView.tpl');
+    }
+
+    function ShowAdminLocation(){
+        header("Location: ".BASE_URL."users");
     }
 }

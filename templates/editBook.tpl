@@ -2,7 +2,7 @@
 {include file="header.tpl"}
 <h1>{$titulo}</h1>
 <div class="container">
-    <form action=updateBook method="POST">
+    <form action=updateBook method="POST" >
     <div class="input-group mb-3">
         <span class="input-group-text" id="basic-addon1">Nombre del libro</span>
         <input type="text" name="nombre" placeholder="{$libro->nombre}">

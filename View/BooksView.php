@@ -1,5 +1,5 @@
 <?php
-require_once './libs/smarty-3.1.39/libs/Smarty.class.php';
+require_once './libs/smarty-3.1.39/smarty/libs/Smarty.class.php';
 
 class BooksView{
 
@@ -9,17 +9,21 @@ class BooksView{
         $this->smarty = new Smarty();
     }
 
-    function showHome($libros,$autores,$user){
+    function showHome($libros,$autores,$user,$admin){
         $this->smarty->assign('titulo','Libreria');
         $this->smarty->assign('libros',$libros);
         $this->smarty->assign('autores',$autores);
         $this->smarty->assign('user', $user);
+        $this->smarty->assign('fecha', date('Y-m-d'));
+        $this->smarty->assign('admin',$admin);
         $this->smarty->display('templates/booksTable.tpl');
     }
-    function showDetail($libro,$autores){
+    function showDetail($libro,$autores,$user,$admin){
         $this->smarty->assign('titulo','Detalles del libro');
         $this->smarty->assign("libro",$libro);
         $this->smarty->assign('autores',$autores);
+        $this->smarty->assign('user',$user);
+        $this->smarty->assign('admin',$admin);
         $this->smarty->display('templates/bookDetail.tpl');
     }
     function showEditBook($libro,$autores){
@@ -30,7 +34,7 @@ class BooksView{
     }
    
     function ShowHomeLocation(){
-        header("Location: ".BASE_URL."home");
+        header("Location: ".BASE_URL."books");
 
     }
     

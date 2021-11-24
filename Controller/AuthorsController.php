@@ -19,42 +19,78 @@ class AuthorsController{
     }
 
     function authors(){
-        $user=$this->authHelper->checkUser();
-        $libros=$this->modelBook->getBooks();
-        $autores = $this->model->getAuthors();
-        $this->view->viewAuthors($libros, $autores,$user);
-
+        $this->authHelper->checkLoggedIn();
+            $user=$this->authHelper->checkUser();
+            $admin=$this->authHelper->checkAdmin();
+            $libros=$this->modelBook->getBooks();
+            $autores = $this->model->getAuthors();
+        if(isset($libros) && isset($autores)){
+            $this->view->viewAuthors($libros, $autores,$user,$admin);   
+        }
+        else{
+            $this->view->ShowCategoriaLocation();
+        }
     }
     
-    function filtrarBooks($id){
+    function filtrarBooks($params=null){
+        $id=$params[':ID'];
+        $this->authHelper->checkLoggedIn();
         $libros=$this->modelBook->getBooks();
         $autor=$this->model->getAuthor($id);
-        $this->view->showFilter($libros,$autor);
+        if(isset($libros) && isset($autor)){
+            $this->view->showFilter($libros,$autor);
+        }
+        else{
+            $this->view->ShowCategoriaLocation();
+        }
+        
     }
 
-    function deleteAutor($id){
-        $this->authHelper->checkLoggedIn();
-        $this->model->deleteAutor($id);
-        $this->view->ShowCategoriaLocation();
+    function deleteAutor($params=null){
+        $id=$params[':ID'];
+            $this->authHelper->checkAdminLogged();
+            $this->model->deleteAutor($id);
+            $this->view->ShowCategoriaLocation();
+        
 
     }
 
     function createAutor(){
-        $this->authHelper->checkLoggedIn();
-        $this->model->insertAutor($_POST['nombre'],$_POST['descripcion'],$_POST['genero']);
-        $this->view->ShowCategoriaLocation();
+        $nombre=$_POST['nombre'];
+        $descripcion =$_POST['descripcion'];
+        $genero=$_POST['genero'];
+        $this->authHelper->checkAdminLogged();
+        if(!empty($nombre) && !empty($descripcion) && !empty($genero)){
+            $this->model->insertAutor($nombre,$descripcion,$genero);
+            $this->view->ShowCategoriaLocation();
+        }else{
+            $this->view->ShowCategoriaLocation();
+        }
     }
 
-    function editAutor($id){
-        $this->authHelper->checkLoggedIn();
+    function editAutor($params=null){
+        $id=$params[':ID'];
+        $this->authHelper->checkAdminLogged();
         $autor= $this->model->getAuthor($id);
-        $this->view->showEditAutor($autor);
+        if(isset($autor)){
+            $this->view->showEditAutor($autor);
+        }
+        else{
+            $this->view->ShowCategoriaLocation();
+        }
     }
 
     function guardarEdit(){
-        $this->authHelper->checkLoggedIn();
-        $this->model->updateAutor($_POST['nombre'],$_POST['descripcion'],$_POST['genero'],$_POST['id']);
-        $this->view->ShowCategoriaLocation();
+        $nombre=$_POST['nombre'];
+        $descripcion =$_POST['descripcion'];
+        $genero=$_POST['genero'];
+        $this->authHelper->checkAdminLogged();
+        if(!empty($nombre) || !empty($descripcion) || !empty($genero)){
+            $this->model->updateAutor($nombre,$descripcion,$genero,$_POST['id']);
+            $this->view->ShowCategoriaLocation();
+        }else{
+            $this->view->ShowCategoriaLocation();
+        }
     }
 
 }

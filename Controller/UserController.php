@@ -26,7 +26,7 @@ function login(){
     $this->view->showLogin();   
 }
 
-function Register(){
+function register(){
     $this->view->ShowRegister();
 }
 
@@ -35,9 +35,10 @@ function registerUser(){
     $hash = $_POST["password"];
     if (!(empty($user)) && !(empty($hash))) {
         $hash = password_hash($_POST["password"], PASSWORD_BCRYPT);
-
         $this->model->registerUser($user,$hash);
-        $this->view->ShowLogin("Cuenta creada con éxito");
+        $this->view->ShowHomeLocation();
+        $userFromDB = $this->model->getUser($user);
+        $this->authHelper->login($userFromDB);
 
     }else
         $this->view->showLogin("Faltan datos");
@@ -55,6 +56,8 @@ function verifyUser(){
 
         session_start();
         $_SESSION["USER"] = $userFromDB->usuario; 
+        $_SESSION["ID_USER"] = $userFromDB->id;
+        $_SESSION["ADMIN"] = $userFromDB->admin;
 
             $this->view->ShowHomeLocation();
 
@@ -64,11 +67,35 @@ function verifyUser(){
     }
 }
 
+
 function logout(){
     session_start();
     session_destroy();
     $this->view->showLogin("Cerraste sesion");
 
+}
+
+function showUsers(){
+    $this->authHelper->checkAdminLogged();
+    $users=$this->model->getUsers();
+    $this->view->viewUsers($users);
+
+}
+
+function deleteUser($params=''){
+    $this->authHelper->checkAdminLogged();
+    $id_user = $params[':ID'];
+    $this->model->deleteUser($id_user);
+    $this->view->ShowAdminLocation();
+
+}
+
+function editAdmin(){
+    $this->authHelper->checkAdminLogged();
+    $admin = $_POST['input_admin'];
+    $id = $_POST['input_id'];
+    $this->model->updateAdmin($admin,$id);
+    $this->view->ShowAdminLocation();
 }
  
 

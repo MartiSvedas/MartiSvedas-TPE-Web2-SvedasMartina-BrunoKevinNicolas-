@@ -9,7 +9,7 @@
                     <th scope="col">Descripcion</th>  
                     <th scope="col">Genero</th>   
                     <th scope="col">Libros del autor</th> 
-                    {if $user eq true}
+                    {if $admin eq true}
                     <th scope="col">Eliminar</th>      
                     <th scope="col">Editar</th>
                     {/if}          
@@ -27,7 +27,7 @@
                     <div class="hstack gap-3">
                     <td><button type="button" class=" btn btn-outline-primary"><a href="filtrarBook/{$autor->id}" class="text-decoration-none">Ver Libros</a></button>
                     </td>
-                    {if $user eq true}
+                    {if $admin eq true}
                     <td>
                         <button type="button" class=" btn btn-outline-danger"><a class="text-decoration-none" href="deleteAutor/{$autor->id}">Borrar</a></button>
                     </td>
@@ -41,6 +41,6 @@
 {/foreach}
     </table>
 <div>
-{if $user eq true}
+{if $admin eq true}
 {include file="insertAutor.tpl"}
 {/if}

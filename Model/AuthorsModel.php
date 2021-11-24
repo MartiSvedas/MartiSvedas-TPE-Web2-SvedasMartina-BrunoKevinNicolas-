@@ -1,6 +1,4 @@
-<?php
- 
-  
+<?php 
 
 class AuthorsModel{
     private $db;
