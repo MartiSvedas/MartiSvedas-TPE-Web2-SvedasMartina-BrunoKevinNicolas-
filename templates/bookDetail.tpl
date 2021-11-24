@@ -31,12 +31,14 @@
           {/if}
         {else}
             <p>Sin imagen</p>
-            <form action="insertImg" method="post" enctype="multipart/form-data">
-                <div class="input-group mb-3">
-                    <input type="file" name="input_image" id="imageToUpload">
-                </div>
+            {if $admin eq true}
+                <form action="insertImg" method="post" enctype="multipart/form-data">
+                    <div class="input-group mb-3">
+                        <input type="file" name="input_image" id="imageToUpload">
+                    </div>
                     <button type="sumbit" value = "{$libro->id}" name="id">Cargar imagen</button>
-            </form>   
+                </form> 
+            {/if}  
         {/if}
         </td>
     </tbody>
